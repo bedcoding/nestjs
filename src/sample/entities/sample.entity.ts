@@ -6,7 +6,15 @@ export class Sample {
     @Field(type => String)
     name: string;
 
-    // null 허용하는 경우: (!) 안 붙음
-    @Field(type => Boolean, {nullable:true})
-    isGood?:boolean;
+    @Field(type => Boolean)
+    isVegan:boolean;
+
+    @Field(type => Boolean)
+    address:string;
+
+    @Field(type => Boolean)
+    ownerName:string;
 }
+
+// null 허용하는 경우: (!) 안 붙음
+// @Field(type => Boolean, {nullable:true})

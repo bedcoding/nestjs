@@ -1,4 +1,5 @@
-import { Args, Query, Resolver } from "@nestjs/graphql";
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { CreateSampleDto } from "./dtos/create-sample-dto";
 import { Sample } from "./entities/sample.entity";
 
 // @Resolver만 붙이면 graphql로부터 import 된다.
@@ -10,6 +11,18 @@ export class SampleResolver {
     samples(@Args('testParamName') testParamName: boolean): Sample[] {
         return [];
     }
+
+    // 인자들 일일히 넣어주는게 아니라 dto 파일 만들어서 넣어줌
+    @Mutation(returns => Boolean)
+    createSample(
+        @Args() CreateSampleDto: CreateSampleDto,
+        // @Args('name') name:string,
+        // @Args('isVegan') isVegan:boolean,
+        // @Args('address') address:string,
+        // @Args('ownersName') ownersName:string,
+    ): boolean {
+        return true;
+    }
 }
 
 /* 
@@ -19,4 +32,5 @@ query {
         name
     }
 }
+
 */
