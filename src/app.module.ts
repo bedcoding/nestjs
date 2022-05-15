@@ -39,7 +39,7 @@ import { Sample } from './sample/entities/sample.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       synchronize: false,  // true를 할 경우, 소스코드 컬럼에 변화가 생길 때 데이터베이스도 바꿔버림 => (process.env.NODE_ENV !== 'prod') 형태로도 사용 가능
-      logging: true,  // 로그
+      logging: process.env.NODE_ENV !== 'prod',  // true인 경우 로그 남기기
       entities: [Sample],  // 자동으로 DB 컬럼 추가하려면 이거 넣은 뒤 synchronize: true를 넣는다
     }),
 

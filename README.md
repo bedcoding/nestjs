@@ -10,3 +10,20 @@
 9. package.json에 커맨드 추가를 위한 설치 (npm i cross-env)
 10. package.json에 커맨드 추가 (yarn start:dev 입력시 dev DB에 연결하는 식)
 11. 환경변수 유효성 검사 추가(npm i joi) => dev, prod라는 글자만 허용하는 식.
+12. 데이터베이스 연동
+```
+AppModule -> SampleModule -> TypeOrmModule -> SampleResolver -> SampleService
+
+1) TypeOrmModule에 DB로 전송할 entity들 설정
+
+2) SampleModule
+: TypeOrmModule의 Sample 엔티티를 다른 곳에서 Inject할 수 있도록 import하기.
+: providers에 SampleService 주입 => SampleResolver에서 사용 가능.
+
+3) SampleService
+: @InjectReposity(entity): 전달받은 entity를 기반으로 Repository 생성.
+: Repository의 메서드들로 DB에 접근하는 방식 지정.
+
+4) SampleResolver
+: GraphQL Query/Mutation으로 DB에 접근하는 SampleService의 메서드들 활용.
+```
