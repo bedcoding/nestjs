@@ -9,3 +9,4 @@
 8. 테스트, 개발기, 운영기 환경세팅 (.env.test 파일과 .env.dev 파일과 .env.prod 파일)
 9. package.json에 커맨드 추가를 위한 설치 (npm i cross-env)
 10. package.json에 커맨드 추가 (yarn start:dev 입력시 dev DB에 연결하는 식)
+11. 환경변수 유효성 검사 추가(npm i joi) => dev, prod라는 글자만 허용하는 식.
