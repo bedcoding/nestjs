@@ -27,3 +27,5 @@ AppModule -> SampleModule -> TypeOrmModule -> SampleResolver -> SampleService
 4) SampleResolver
 : GraphQL Query/Mutation으로 DB에 접근하는 SampleService의 메서드들 활용.
 ```
+13. 신규 컬럼 추가될 경우 SampleEntity가 알아서 DB테이블, graphql type, dto 모두 업데이트 시키기
+- create-sample-dto에서 상속(extends) 받도록 처리

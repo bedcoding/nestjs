@@ -18,8 +18,14 @@ export class SampleResolver {
 
     // 인자들 일일히 넣어주는게 아니라 dto 파일 만들어서 넣어줌
     @Mutation(returns => Boolean)
-    createSample(@Args() CreateSampleDto: CreateSampleDto): boolean {
-        return true;
+    async createSample(@Args('input') CreateSampleDto: CreateSampleDto): Promise<boolean> {
+        try {
+            await this.sampleService.createSample(CreateSampleDto);
+            return true;
+        } catch(e) {
+            console.log(e);
+            return false;
+        }
     }
 }
 
@@ -37,6 +43,7 @@ mutation {
   isVegan: true
   address: "1"
   ownersName: "1"
+  categoryName: "1"
   )
 }
 */

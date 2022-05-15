@@ -1,32 +1,9 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { ArgsType, Field, InputType, OmitType } from "@nestjs/graphql";
 import { IsBoolean, IsString, Length } from 'class-validator';
+import { Sample } from "../entities/sample.entity";
 
-@ArgsType()
-export class CreateSampleDto {
-    @Field(type => String)
-    @IsString()
-    @Length(5, 10)  // 5~10자 제한
-    name: string;
+@InputType()
+// OmitType: create할 때 id는 필요없으므로 id를 제외한 모든 것을 받기 위한 옵션
+export class CreateSampleDto extends OmitType(Sample, ['id'], InputType) {
 
-    @Field(type => Boolean)
-    @IsBoolean()
-    isVegan: boolean;
-
-    @Field(type => String)
-    @IsString()
-    address: string;
-
-    @Field(type => String)
-    ownersName: string;
 }
-
-/*
-mutation {
-  createSample(
-  name: "12345"
-  isVegan: true
-  address: "1"
-  ownersName: "1"
-  )
-}
-*/
