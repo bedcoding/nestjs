@@ -1,5 +1,6 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { CreateSampleDto } from "./dtos/create-sample-dto";
+import { UpdateSampleDto } from "./dtos/update-sample.dto";
 import { Sample } from "./entities/sample.entity";
 import { SampleService } from "./sample.service";
 
@@ -27,6 +28,21 @@ export class SampleResolver {
             return false;
         }
     }
+
+    @Mutation(returns => Boolean)
+    async updateSample(
+        // @Args('id') id: number,
+        // @Args('data') data: UpdateSampleDto,
+        @Args('input') updateSampleDto: UpdateSampleDto
+    ): Promise<boolean> {
+        try {
+            await this.sampleService.updateSample(updateSampleDto);
+            return true;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
 }
 
 /* 
@@ -45,5 +61,15 @@ mutation {
   ownersName: "1"
   categoryName: "1"
   )
+}
+
+mutation {
+  updateSample(input: {
+    id: 4,
+    data: {
+      name: "updated!!"
+      isVegan: false
+    }
+  })
 }
 */
